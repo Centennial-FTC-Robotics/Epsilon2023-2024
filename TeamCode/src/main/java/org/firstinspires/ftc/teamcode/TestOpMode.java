@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp
 public class TestOpMode extends LinearOpMode {
-    static final boolean FIELD_CENTRIC = false;
+    static final boolean FIELD_CENTRIC = true;
 
     @Override
     public void runOpMode() throws InterruptedException {
