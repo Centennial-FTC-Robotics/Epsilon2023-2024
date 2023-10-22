@@ -129,10 +129,10 @@ public class MeepMeepTesting {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
-        RoadRunnerBotEntity myBot = topBlue(meepMeep);
+        // RoadRunnerBotEntity myBot = topBlue(meepMeep);
         // RoadRunnerBotEntity myBot = bottomBlue(meepMeep);
         // RoadRunnerBotEntity myBot = topRed(meepMeep);
-        // RoadRunnerBotEntity myBot = bottomRed(meepMeep);
+        RoadRunnerBotEntity myBot = bottomRed(meepMeep);
 
         Image img = null;
         try { img = ImageIO.read(new File("MeepMeepTesting\\src\\main\\java\\com\\example\\meepmeeptesting\\background.png")); }
