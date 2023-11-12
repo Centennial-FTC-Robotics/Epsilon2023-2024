@@ -17,12 +17,12 @@ public class TestOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         OurRobot robot = new OurRobot(this);
 
-        MecanumDrive drive = new MecanumDrive(
+        /*MecanumDrive drive = new MecanumDrive(
                 new Motor(hardwareMap, "frontLeft", Motor.GoBILDA.RPM_435),
                 new Motor(hardwareMap, "frontRight", Motor.GoBILDA.RPM_435),
                 new Motor(hardwareMap, "backLeft", Motor.GoBILDA.RPM_435),
                 new Motor(hardwareMap, "backRight", Motor.GoBILDA.RPM_435)
-        );
+        );*/
 
         RevIMU imu = new RevIMU(hardwareMap);
         imu.init();
@@ -32,15 +32,17 @@ public class TestOpMode extends LinearOpMode {
         waitForStart();
 
         while (!isStopRequested()) {
-            if (!FIELD_CENTRIC) {
+            /*if (!FIELD_CENTRIC) {
                 drive.driveRobotCentric(
                         driverOp.getLeftX(),
                         driverOp.getLeftY(),
                         driverOp.getRightX(),
                         false
-                );
-            } else {
-                robot.intake.spinWheel(0.5);
+                );*/
+            //} else {
+                boolean spin = gamepad1.a;
+                if (spin) robot.intake.spinWheel(0.5);
+                else robot.intake.spinWheel(0);
                 /*drive.driveFieldCentric(
                         driverOp.getLeftX(),
                         driverOp.getLeftY(),
@@ -49,7 +51,7 @@ public class TestOpMode extends LinearOpMode {
                         false
                 );*/
 
-            }
+            //}
         }
     }
 }
