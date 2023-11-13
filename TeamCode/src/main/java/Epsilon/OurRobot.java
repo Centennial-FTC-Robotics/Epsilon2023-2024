@@ -18,10 +18,10 @@ public class OurRobot {
 
 
     public OurRobot(LinearOpMode opMode) {
-        drivetrain = new Drivetrain(opMode.hardwareMap, "drivetrain");
-        imu = new IMU(opMode.hardwareMap, "imu");
-        intake = new Intake(opMode.hardwareMap, "intake");
-        outtake = new Outtake(opMode.hardwareMap, "outtake");
-        vision = new Vision(opMode.hardwareMap, "vision");
+        drivetrain = new Drivetrain(opMode.hardwareMap);
+        imu = new IMU(opMode.hardwareMap);
+        intake = new Intake(opMode.hardwareMap);
+        outtake = new Outtake(opMode.hardwareMap);
+        vision = new Vision(opMode.hardwareMap);
     }
 }

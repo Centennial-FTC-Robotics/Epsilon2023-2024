@@ -10,12 +10,17 @@ public class Intake extends SubsystemBase {
     public Servo rightServo;
     public DcMotor wheelMotor;
     public Intake(final HardwareMap hMap) {
-        //leftServo = hMap.get(Servo.class, "left");
-        //rightServo = hMap.get(Servo.class, "right");
+        leftServo = hMap.get(Servo.class, "left");
+        rightServo = hMap.get(Servo.class, "right");
         wheelMotor = hMap.get(DcMotor.class, "wheel");
     }
 
     public void spinWheel(double power) {
         wheelMotor.setPower(power);
+    }
+
+    public void moveIntake(double pos) {
+        leftServo.setPosition(pos);
+        rightServo.setPosition(pos);
     }
 }
