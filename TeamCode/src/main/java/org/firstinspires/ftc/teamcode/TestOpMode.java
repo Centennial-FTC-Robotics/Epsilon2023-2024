@@ -46,6 +46,8 @@ public class TestOpMode extends LinearOpMode {
 
                 double servoPos = gamepad1.left_stick_y;
                 robot.intake.moveIntake(servoPos);
+
+                robot.vision.detectTag(this);
                 /*drive.driveFieldCentric(
                         driverOp.getLeftX(),
                         driverOp.getLeftY(),
