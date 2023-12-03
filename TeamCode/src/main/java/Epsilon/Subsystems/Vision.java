@@ -16,8 +16,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import java.util.ArrayList;
+import Epsilon.Subsystem;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
-public class Vision extends SubsystemBase {
+
+public class Vision implements Subsystem {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
@@ -133,4 +136,6 @@ public class Vision extends SubsystemBase {
         opMode.telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
         opMode.telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));*/
     }
+
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {}
 }

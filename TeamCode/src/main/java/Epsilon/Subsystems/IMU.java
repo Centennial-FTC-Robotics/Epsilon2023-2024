@@ -2,9 +2,13 @@ package Epsilon.Subsystems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import Epsilon.Subsystem;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
-public class  IMU extends SubsystemBase {
+public class  IMU implements Subsystem {
     public IMU(final HardwareMap hMap) {
 
     }
+
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {}
 }

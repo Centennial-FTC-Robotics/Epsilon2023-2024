@@ -4,8 +4,10 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import Epsilon.Subsystem;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
-public class Intake extends SubsystemBase {
+public class Intake implements Subsystem {
     public Servo leftServo;
     public Servo rightServo;
     public DcMotor wheelMotor;
@@ -23,4 +25,6 @@ public class Intake extends SubsystemBase {
         leftServo.setPosition(pos);
         rightServo.setPosition(pos);
     }
+
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {}
 }

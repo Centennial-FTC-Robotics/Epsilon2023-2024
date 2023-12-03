@@ -7,14 +7,15 @@ import Epsilon.Subsystems.IMU;
 import Epsilon.Subsystems.Intake;
 import Epsilon.Subsystems.Outtake;
 import Epsilon.Subsystems.Vision;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class OurRobot {
     public Drivetrain drivetrain;
     public IMU imu;
     public Intake intake;
     public Outtake outtake;
-
     public Vision vision;
+    public Subsystem[] subsystems;
 
 
     public OurRobot(LinearOpMode opMode) {
@@ -23,5 +24,15 @@ public class OurRobot {
         intake = new Intake(opMode.hardwareMap);
         outtake = new Outtake(opMode.hardwareMap);
         vision = new Vision(opMode.hardwareMap);
+        Subsystem[] subsystems = new Subsystem[] {
+                drivetrain, intake, outtake, imu, vision
+        };
     }
+
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) throws InterruptedException {
+        for(Subsystem subsystem : subsystems) {
+            subsystem.teleOpUpdate(gamepad1, gamepad2);
+        }
+    }
+
 }
