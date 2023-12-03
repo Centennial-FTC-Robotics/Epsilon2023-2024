@@ -14,21 +14,13 @@ public class Drivetrain implements Subsystem {
     public DcMotor frontRight;
     public DcMotor backLeft;
     public DcMotor backRight;
-    public BNO055IMU imu;
+    public IMU imu_class;
     public Drivetrain(final HardwareMap hMap) {
         frontLeft = hMap.get(DcMotor.class, "frontLeft");
         frontRight = hMap.get(DcMotor.class, "frontRight");
         backLeft = hMap.get(DcMotor.class, "backLeft");
         backRight = hMap.get(DcMotor.class, "backRight");
-        imu = hMap.get(BNO055IMU.class, "imu");
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "AdafruitIMUCalibration.json";
-        parameters.loggingEnabled = true;
-        parameters.loggingTag = "IMU";
-        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
-        imu.initialize(parameters);
+        imu_class = new IMU(hMap);
     }
 
     public void teleOpUpdate(Gamepad gamepad1) {
@@ -36,7 +28,7 @@ public class Drivetrain implements Subsystem {
         double strafe = gamepad1.left_stick_x;
         double turn = gamepad1.right_stick_x;
 
-        double angle = imu.getAngularOrientation().firstAngle;
+        double angle = imu_class.imu.getAngularOrientation().firstAngle;
         double rot_x = strafe * Math.cos(Math.toRadians(angle)) - drive * Math.sin(Math.toRadians(angle));
         double rot_y = strafe * Math.sin(Math.toRadians(angle)) + drive * Math.cos(Math.toRadians(angle));
 
