@@ -137,5 +137,5 @@ public class Vision implements Subsystem {
         opMode.telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));*/
     }
 
-    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {}
+    public void teleOpUpdate(Gamepad gamepad1) {}
 }

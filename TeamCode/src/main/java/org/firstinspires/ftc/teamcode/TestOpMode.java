@@ -40,14 +40,9 @@ public class TestOpMode extends LinearOpMode {
                         false
                 );*/
             //} else {
-                boolean spin = gamepad1.a;
-                if (spin) robot.intake.spinWheel(0.5);
-                else robot.intake.spinWheel(0);
+                robot.intake.teleOpUpdate(gamepad1);
 
-                double servoPos = gamepad1.left_stick_y;
-                robot.intake.moveIntake(servoPos);
-
-                robot.vision.detectTag(this);
+                //robot.vision.detectTag(this);
                 /*drive.driveFieldCentric(
                         driverOp.getLeftX(),
                         driverOp.getLeftY(),

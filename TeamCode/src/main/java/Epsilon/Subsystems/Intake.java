@@ -1,6 +1,7 @@
 package Epsilon.Subsystems;
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -26,5 +27,8 @@ public class Intake implements Subsystem {
         rightServo.setPosition(pos);
     }
 
-    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {}
+    public void teleOpUpdate(Gamepad gamepad1) {
+        if (gamepad1.b) spinWheel(0.5);
+        else spinWheel(0);
+    }
 }
