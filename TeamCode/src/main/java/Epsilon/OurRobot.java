@@ -20,7 +20,7 @@ public class OurRobot {
 
 
     public OurRobot(LinearOpMode opMode) {
-        //drivetrain = new Drivetrain(opMode.hardwareMap);
+        drivetrain = new Drivetrain(opMode.hardwareMap);
         //imu = new IMU(opMode.hardwareMap);
         intake = new Intake(opMode.hardwareMap);
         //outtake = new Outtake(opMode.hardwareMap);
