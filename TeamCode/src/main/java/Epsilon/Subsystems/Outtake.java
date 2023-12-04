@@ -45,12 +45,12 @@ public class Outtake implements Subsystem {
         boxServo2.setPosition(0);
     }
 
-    public void teleOpUpdate(Gamepad gamepad1) {
-        if (gamepad1.left_bumper) lowerSlides();
-        else if (gamepad1.right_bumper) raiseSlides();
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
+        if (gamepad2.left_bumper) lowerSlides();
+        else if (gamepad2.right_bumper) raiseSlides();
         else stopSlides();
 
-        if (gamepad1.x) emptyBox();
+        if (gamepad2.x) emptyBox();
         else returnBox();
     }
 }

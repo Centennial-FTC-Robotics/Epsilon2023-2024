@@ -30,9 +30,9 @@ public class OurRobot {
         };
     }
 
-    public void teleOpUpdate(Gamepad gamepad1) throws InterruptedException {
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) throws InterruptedException {
         for(Subsystem subsystem : subsystems) {
-            subsystem.teleOpUpdate(gamepad1);
+            subsystem.teleOpUpdate(gamepad1, gamepad2);
         }
     }
 

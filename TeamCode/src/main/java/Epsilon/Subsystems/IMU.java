@@ -22,5 +22,5 @@ public class IMU implements Subsystem {
         imu.initialize(parameters);
     }
 
-    public void teleOpUpdate(Gamepad gamepad1) {}
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {}
 }

@@ -32,11 +32,11 @@ public class Intake implements Subsystem {
         rightServo.setPosition(0);
     }
 
-    public void teleOpUpdate(Gamepad gamepad1) {
-        if (gamepad1.b) spinWheel(0.5);
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
+        if (gamepad2.b) spinWheel(0.5);
         else spinWheel(0);
 
-        if (gamepad1.dpad_up) raiseIntake();
-        if (gamepad1.dpad_down) lowerIntake();
+        if (gamepad2.dpad_up) raiseIntake();
+        if (gamepad2.dpad_down) lowerIntake();
     }
 }
