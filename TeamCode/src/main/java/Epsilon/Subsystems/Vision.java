@@ -126,6 +126,24 @@ public class Vision implements Subsystem {
         sleep(20);
     }
 
+    public void detectCube(LinearOpMode opMode) {
+        BlueCubeDetectionPipeline pipeline = new BlueCubeDetectionPipeline(3.5);
+        opMode.telemetry.setMsTransmissionInterval(50);
+
+        if(pipeline.isCubeDetected())
+        {
+            opMode.telemetry.addLine("Cube is in sight!\n\nLocation data:");
+            opMode.telemetry.addLine(Double.toString(pipeline.getCubeCenterX()));
+            opMode.telemetry.addLine(Double.toString(pipeline.getCubeCenterY()));
+            opMode.telemetry.update();
+        }
+        else
+        {
+            opMode.telemetry.addLine("Don't see cube :(");
+            opMode.telemetry.update();
+        }
+    }
+
     void tagToTelemetry(AprilTagDetection detection, LinearOpMode opMode)
     {
         opMode.telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
@@ -137,5 +155,5 @@ public class Vision implements Subsystem {
         opMode.telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));*/
     }
 
-    public void teleOpUpdate(Gamepad gamepad1) {}
+    public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {}
 }

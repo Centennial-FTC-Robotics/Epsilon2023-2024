@@ -41,6 +41,7 @@ public class TestOpMode extends LinearOpMode {
                 );*/
             //} else {
                 robot.teleOpUpdate(gamepad1, gamepad2);
+                robot.vision.detectCube(this);
 
                 //robot.vision.detectTag(this);
                 /*drive.driveFieldCentric(

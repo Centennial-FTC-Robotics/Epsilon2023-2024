@@ -21,19 +21,20 @@ public class OurRobot {
 
     public OurRobot(LinearOpMode opMode) {
         drivetrain = new Drivetrain(opMode.hardwareMap);
-        //imu = new IMU(opMode.hardwareMap);
-        intake = new Intake(opMode.hardwareMap);
+        imu = new IMU(opMode.hardwareMap);
+        //intake = new Intake(opMode.hardwareMap);
         //outtake = new Outtake(opMode.hardwareMap);
-        //vision = new Vision(opMode.hardwareMap);
-        Subsystem[] subsystems = new Subsystem[] {
+        vision = new Vision(opMode.hardwareMap);
+        subsystems = new Subsystem[] {
                 drivetrain, intake, outtake, imu, vision
         };
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) throws InterruptedException {
-        for(Subsystem subsystem : subsystems) {
+        /*for(Subsystem subsystem : subsystems) {
             subsystem.teleOpUpdate(gamepad1, gamepad2);
-        }
+        }*/
+        drivetrain.teleOpUpdate(gamepad1, gamepad2);
     }
 
 }
