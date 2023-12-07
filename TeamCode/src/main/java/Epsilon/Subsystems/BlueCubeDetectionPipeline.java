@@ -40,14 +40,12 @@ public class BlueCubeDetectionPipeline extends OpenCvPipeline {
         if (!contourMat.isEmpty()) {
             for (int i = 0; i < contourMat.size(); i++) {
                 Rect rect = Imgproc.boundingRect(contourMat.get(i));
-                double contourArea = Imgproc.contourArea(contourMat.get(i));
-                if (Math.abs(1 - (rect.width / rect.height)) < 0.2 && contourArea > 1000) {
-                    cubeCenterX = rect.x + rect.width / 2.0;
-                    cubeCenterY = rect.y + rect.height / 2.0;
-                    cubeDetected = true;
-                    Imgproc.rectangle(input, rect.tl(), rect.br(), new Scalar(0, 255, 0), 2);
-                    break;
-                }
+                //double contourArea = Imgproc.contourArea(contourMat.get(i));
+                cubeCenterX = rect.x + rect.width / 2.0;
+                cubeCenterY = rect.y + rect.height / 2.0;
+                cubeDetected = true;
+                Imgproc.rectangle(input, rect.tl(), rect.br(), new Scalar(0, 255, 0), 2);
+                break;
             }
         }
 
