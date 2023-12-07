@@ -29,8 +29,8 @@ public class BlueCubeDetectionPipeline extends OpenCvPipeline {
     @Override
     public Mat processFrame(Mat input) {
         Imgproc.cvtColor(input, hsvMat, Imgproc.COLOR_RGB2HSV);
-        Scalar lowerBlue = new Scalar(100, 100, 100); //can change later if needed ig
-        Scalar upperBlue = new Scalar(130, 255, 255); //can change later if needed ig
+        Scalar lowerBlue = new Scalar(120, 100, 255); //can change later if needed ig
+        Scalar upperBlue = new Scalar(160, 185, 255); //can change later if needed ig
         Core.inRange(hsvMat, lowerBlue, upperBlue, maskMat);
         Imgproc.findContours(maskMat, contourMat, new Mat(), Imgproc.RETR_EXTERNAL, Imgproc.CHAIN_APPROX_SIMPLE);
         cubeCenterX = -1;
