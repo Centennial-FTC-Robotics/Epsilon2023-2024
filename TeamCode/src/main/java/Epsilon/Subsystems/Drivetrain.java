@@ -24,15 +24,39 @@ public class Drivetrain implements Subsystem {
         frontRight.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.REVERSE);
 
-        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+
+    private double inches_to_ticks(double inches) {
+        double wheel_diameter = 95 / 25.4;
+        double circumference = wheel_diameter * Math.PI;
+        double revs = inches / circumference;
+        return revs * 537.6;
+    }
+
+    public void move_forward(int inches) {
+        frontLeft.setTargetPosition((int) inches_to_ticks(inches));
+        frontRight.setTargetPosition((int) inches_to_ticks(inches));
+        backLeft.setTargetPosition((int) inches_to_ticks(inches));
+        backRight.setTargetPosition((int) inches_to_ticks(inches));
+
+        frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        frontLeft.setPower(0.2);
+        frontRight.setPower(0.2);
+        backLeft.setPower(0.2);
+        backRight.setPower(0.2);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {

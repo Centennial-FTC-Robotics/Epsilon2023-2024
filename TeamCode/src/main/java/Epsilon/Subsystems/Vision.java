@@ -23,6 +23,7 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 public class Vision implements Subsystem {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
+    BlueCubeDetectionPipeline blueCubeDetectionPipeline;
 
     static final double FEET_PER_METER = 3.28084;
 
@@ -48,9 +49,10 @@ public class Vision implements Subsystem {
     public Vision(final HardwareMap hMap) {
         int cameraMonitorViewId = hMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
-        aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+        //aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+        blueCubeDetectionPipeline = new BlueCubeDetectionPipeline(3.5);
 
-        camera.setPipeline(aprilTagDetectionPipeline);
+        camera.setPipeline(blueCubeDetectionPipeline);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
@@ -127,14 +129,13 @@ public class Vision implements Subsystem {
     }
 
     public void detectCube(LinearOpMode opMode) {
-        BlueCubeDetectionPipeline pipeline = new BlueCubeDetectionPipeline(3.5);
         opMode.telemetry.setMsTransmissionInterval(50);
 
-        if(pipeline.isCubeDetected())
+        if(blueCubeDetectionPipeline.isCubeDetected())
         {
             opMode.telemetry.addLine("Cube is in sight!\n\nLocation data:");
-            opMode.telemetry.addLine(Double.toString(pipeline.getCubeCenterX()));
-            opMode.telemetry.addLine(Double.toString(pipeline.getCubeCenterY()));
+            opMode.telemetry.addLine(Double.toString(blueCubeDetectionPipeline.getCubeCenterX()));
+            opMode.telemetry.addLine(Double.toString(blueCubeDetectionPipeline.getCubeCenterY()));
             opMode.telemetry.update();
         }
         else

@@ -11,48 +11,20 @@ import Epsilon.OurRobot;
 
 @TeleOp
 public class TestOpMode extends LinearOpMode {
-    static final boolean FIELD_CENTRIC = true;
 
     @Override
     public void runOpMode() throws InterruptedException {
         OurRobot robot = new OurRobot(this);
 
-        /*MecanumDrive drive = new MecanumDrive(
-                new Motor(hardwareMap, "frontLeft", Motor.GoBILDA.RPM_435),
-                new Motor(hardwareMap, "frontRight", Motor.GoBILDA.RPM_435),
-                new Motor(hardwareMap, "backLeft", Motor.GoBILDA.RPM_435),
-                new Motor(hardwareMap, "backRight", Motor.GoBILDA.RPM_435)
-        );*/
-
-        RevIMU imu = new RevIMU(hardwareMap);
-        imu.init();
-
-        GamepadEx driverOp = new GamepadEx(gamepad1);
-
         waitForStart();
 
+        //robot.drivetrain.move_forward(12);
+
         while (!isStopRequested()) {
-            /*if (!FIELD_CENTRIC) {
-                drive.driveRobotCentric(
-                        driverOp.getLeftX(),
-                        driverOp.getLeftY(),
-                        driverOp.getRightX(),
-                        false
-                );*/
-            //} else {
-                robot.teleOpUpdate(gamepad1, gamepad2);
-                robot.vision.detectCube(this);
+            robot.teleOpUpdate(gamepad1, gamepad2);
+            robot.vision.detectCube(this);
 
-                //robot.vision.detectTag(this);
-                /*drive.driveFieldCentric(
-                        driverOp.getLeftX(),
-                        driverOp.getLeftY(),
-                        driverOp.getRightX(),
-                        imu.getRotation2d().getDegrees(),   // gyro value passed in here must be in degrees
-                        false
-                );*/
-
-            //}
+            //robot.vision.detectTag(this);
         }
     }
 }
