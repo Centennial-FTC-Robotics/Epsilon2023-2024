@@ -42,24 +42,42 @@ public class Drivetrain implements Subsystem {
         return revs * 537.6;
     }
 
-    public void move_forward(int inches) {
-        frontLeft.setTargetPosition((int) inches_to_ticks(inches));
-        frontRight.setTargetPosition((int) inches_to_ticks(inches));
-        backLeft.setTargetPosition((int) inches_to_ticks(inches));
-        backRight.setTargetPosition((int) inches_to_ticks(inches));
+    public void move(int inches, boolean strafe) {
+        frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        int position = (int) inches_to_ticks(inches);
+        if (strafe) {
+            frontLeft.setTargetPosition(-position);
+            frontRight.setTargetPosition(position);
+            backLeft.setTargetPosition(position);
+            backRight.setTargetPosition(-position);
+        } else {
+            frontLeft.setTargetPosition(-position);
+            frontRight.setTargetPosition(-position);
+            backLeft.setTargetPosition(-position);
+            backRight.setTargetPosition(-position);
+        }
 
         frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        frontLeft.setPower(0.2);
-        frontRight.setPower(0.2);
-        backLeft.setPower(0.2);
-        backRight.setPower(0.2);
+        frontLeft.setPower(0.3);
+        frontRight.setPower(0.3);
+        backLeft.setPower(0.3);
+        backRight.setPower(0.3);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
+        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         double drive = gamepad1.left_stick_y;
         double strafe = -gamepad1.left_stick_x;
         double turn = -gamepad1.right_stick_x;

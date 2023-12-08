@@ -18,11 +18,14 @@ public class TestOpMode extends LinearOpMode {
 
         waitForStart();
 
-        //robot.drivetrain.move_forward(12);
+        robot.drivetrain.move(24, false);
+        robot.drivetrain.move(72, true);
+        robot.drivetrain.move(-24, false);
+        robot.drivetrain.move(24, true);
 
         while (!isStopRequested()) {
-            robot.teleOpUpdate(gamepad1, gamepad2);
-            robot.vision.detectCube(this);
+            //robot.teleOpUpdate(gamepad1, gamepad2);
+            //robot.vision.detectCube(this);
 
             //robot.vision.detectTag(this);
         }
