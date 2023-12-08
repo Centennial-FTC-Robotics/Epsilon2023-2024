@@ -70,6 +70,9 @@ public class Drivetrain implements Subsystem {
         frontRight.setPower(0.3);
         backLeft.setPower(0.3);
         backRight.setPower(0.3);
+
+        while (frontLeft.isBusy() || frontRight.isBusy() || backLeft.isBusy() || backRight.isBusy()) {}
+
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
