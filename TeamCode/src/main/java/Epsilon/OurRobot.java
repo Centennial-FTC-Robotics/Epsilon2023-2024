@@ -22,9 +22,9 @@ public class OurRobot {
     public OurRobot(LinearOpMode opMode) {
         drivetrain = new Drivetrain(opMode.hardwareMap);
         imu = new IMU(opMode.hardwareMap);
-        //intake = new Intake(opMode.hardwareMap);
+        intake = new Intake(opMode.hardwareMap);
         //outtake = new Outtake(opMode.hardwareMap);
-        vision = new Vision(opMode.hardwareMap);
+        vision = new Vision(opMode.hardwareMap, opMode);
         subsystems = new Subsystem[] {
                 drivetrain, intake, outtake, imu, vision
         };
@@ -35,6 +35,8 @@ public class OurRobot {
             subsystem.teleOpUpdate(gamepad1, gamepad2);
         }*/
         drivetrain.teleOpUpdate(gamepad1, gamepad2);
+        intake.teleOpUpdate(gamepad1, gamepad2);
+        //outtake.teleOpUpdate(gamepad1, gamepad2);
     }
 
 }

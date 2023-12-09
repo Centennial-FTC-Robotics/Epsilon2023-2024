@@ -46,11 +46,11 @@ public class Vision implements Subsystem {
 
     AprilTagDetection tagOfInterest = null;
 
-    public Vision(final HardwareMap hMap) {
+    public Vision(final HardwareMap hMap, LinearOpMode opMode) {
         int cameraMonitorViewId = hMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         //aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
-        blueCubeDetectionPipeline = new BlueCubeDetectionPipeline(3.5);
+        blueCubeDetectionPipeline = new BlueCubeDetectionPipeline(opMode.telemetry);
 
         camera.setPipeline(blueCubeDetectionPipeline);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
@@ -128,21 +128,9 @@ public class Vision implements Subsystem {
         sleep(20);
     }
 
-    public void detectCube(LinearOpMode opMode) {
-        opMode.telemetry.setMsTransmissionInterval(50);
+    public double detectCube() {
 
-        if(blueCubeDetectionPipeline.isCubeDetected())
-        {
-            opMode.telemetry.addLine("Cube is in sight!\n\nLocation data:");
-            opMode.telemetry.addLine(Double.toString(blueCubeDetectionPipeline.getCubeCenterX()));
-            opMode.telemetry.addLine(Double.toString(blueCubeDetectionPipeline.getCubeCenterY()));
-            opMode.telemetry.update();
-        }
-        else
-        {
-            opMode.telemetry.addLine("Don't see cube :(");
-            opMode.telemetry.update();
-        }
+        return blueCubeDetectionPipeline.getCubeCenterX();
     }
 
     void tagToTelemetry(AprilTagDetection detection, LinearOpMode opMode)

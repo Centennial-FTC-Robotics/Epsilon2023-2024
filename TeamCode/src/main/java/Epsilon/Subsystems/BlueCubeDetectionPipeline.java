@@ -27,6 +27,8 @@ public class BlueCubeDetectionPipeline extends OpenCvPipeline {
 
     public static Scalar lowerBlue = new Scalar(100, 75, 0);
     public static Scalar upperBlue = new Scalar(150, 150, 250);
+    // public static Scalar lowerBlue = new Scalar(0,50,50);
+    // public static Scalar upperBlue = new Scalar(10,240,240);
 
     public BlueCubeDetectionPipeline(Telemetry telemetry) {
         this.telemetry = telemetry;
@@ -71,6 +73,11 @@ public class BlueCubeDetectionPipeline extends OpenCvPipeline {
             telemetry.update();
 
             cubeDetected = true;
+        } else {
+            telemetry.addLine("Cube not seen");
+            telemetry.update();
+
+            cubeDetected = false;
         }
 
         return input;

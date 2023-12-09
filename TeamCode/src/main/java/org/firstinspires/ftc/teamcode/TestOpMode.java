@@ -18,15 +18,30 @@ public class TestOpMode extends LinearOpMode {
 
         waitForStart();
 
-        robot.drivetrain.move(24, false);
-        robot.drivetrain.move(72, true);
-        robot.drivetrain.move(-24, false);
-        robot.drivetrain.move(24, true);
+        //robot.drivetrain.move(21, "rotate");
+        if (robot.vision.detectCube() >= 120) {
+            robot.drivetrain.move(42,"rotate");
+            robot.drivetrain.move(24, "drive");
+            robot.drivetrain.move(21,"rotate");
+            robot.intake.spinWheel(0.5);
+        } else if (robot.vision.detectCube() <= 60) {
+            robot.drivetrain.move(42,"rotate");
+            robot.drivetrain.move(24, "drive");
+            robot.drivetrain.move(-21,"rotate");
+            robot.intake.spinWheel(0.5);
+            robot.drivetrain.move(42,"rotate");
+        } else {
+            robot.drivetrain.move(42,"rotate");
+            robot.drivetrain.move(24, "drive");
+            robot.intake.spinWheel(0.5);
+            robot.drivetrain.move(21,"rotate");
+        }
+        robot.drivetrain.move(76, "drive");
+        robot.drivetrain.move(26, "strafe");
+        robot.drivetrain.move(26, "drive");
 
         while (!isStopRequested()) {
-            //robot.teleOpUpdate(gamepad1, gamepad2);
-            //robot.vision.detectCube(this);
-
+            robot.teleOpUpdate(gamepad1, gamepad2);
             //robot.vision.detectTag(this);
         }
     }

@@ -42,23 +42,28 @@ public class Drivetrain implements Subsystem {
         return revs * 537.6;
     }
 
-    public void move(int inches, boolean strafe) {
+    public void move(double inches, String mode) {
         frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         int position = (int) inches_to_ticks(inches);
-        if (strafe) {
-            frontLeft.setTargetPosition(-position);
-            frontRight.setTargetPosition(position);
-            backLeft.setTargetPosition(position);
-            backRight.setTargetPosition(-position);
-        } else {
+        if (mode == "drive") {
             frontLeft.setTargetPosition(-position);
             frontRight.setTargetPosition(-position);
             backLeft.setTargetPosition(-position);
             backRight.setTargetPosition(-position);
+        } else if (mode == "strafe") {
+            frontLeft.setTargetPosition(-position);
+            frontRight.setTargetPosition(position);
+            backLeft.setTargetPosition(position);
+            backRight.setTargetPosition(-position);
+        } else if (mode == "rotate") {
+            frontLeft.setTargetPosition(-position);
+            frontRight.setTargetPosition(position);
+            backLeft.setTargetPosition(-position);
+            backRight.setTargetPosition(position);
         }
 
         frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);

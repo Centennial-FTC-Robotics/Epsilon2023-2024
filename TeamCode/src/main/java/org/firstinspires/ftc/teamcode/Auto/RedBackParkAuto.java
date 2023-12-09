@@ -13,9 +13,10 @@ public class RedBackParkAuto extends LinearOpMode {
 
         waitForStart();
 
-        robot.drivetrain.move(24, false);
-        robot.drivetrain.move(76, true);
-        robot.drivetrain.move(-26, false);
-        robot.drivetrain.move(28, true);
+        robot.drivetrain.move(24, "drive");
+        robot.drivetrain.move(23,"rotate");
+        robot.drivetrain.move(76, "drive");
+        robot.drivetrain.move(24, "strafe");
+        robot.drivetrain.move(24, "drive");
     }
 }
