@@ -9,40 +9,47 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class Outtake implements Subsystem {
-    public DcMotor leftSlide;
-    public DcMotor rightSlide;
-    public Servo boxServo1;
-    public Servo boxServo2;
+    public Servo slideServo1;
+    public Servo dumperServo;
+    public Servo doorServo;
     public Outtake(final HardwareMap hMap) {
-        leftSlide = hMap.get(DcMotor.class, "leftSlide");
-        rightSlide = hMap.get(DcMotor.class, "rightSlide");
-        boxServo1 = hMap.get(Servo.class, "boxServo1");
-        boxServo2 = hMap.get(Servo.class, "boxServo2");
+        slideServo1 = hMap.get(Servo.class, "slideServo1");
+        dumperServo = hMap.get(Servo.class, "dumperServo");
+        doorServo = hMap.get(Servo.class, "doorServo");
     }
 
     public void raiseSlides() {
-        leftSlide.setPower(0.5);
-        rightSlide.setPower(0.5);
+        slideServo1.setPosition(0.);
+        System.out.println("hereRaise");
     }
 
     public void lowerSlides() {
-        leftSlide.setPower(-0.5);
-        rightSlide.setPower(-0.5);
+        slideServo1.setPosition(0);
+        System.out.println("hereLower");
+    }
+
+    public void openDoor() {
+        doorServo.setPosition(0);
+    }
+
+    public void closeDoor() {
+        doorServo.setPosition(0.5);
     }
 
     public void stopSlides() {
-        leftSlide.setPower(0);
-        rightSlide.setPower(0);
+        //leftSlide.setPower(0);
+        //rightSlide.setPower(0);
     }
 
     public void emptyBox() {
-        boxServo1.setPosition(0.5);
-        boxServo2.setPosition(0.5);
+        dumperServo.setPosition(0);
+        //doorServo.setPosition(1);
+        System.out.println("hereEmpty");
     }
 
     public void returnBox() {
-        boxServo1.setPosition(0);
-        boxServo2.setPosition(0);
+        dumperServo.setPosition(0.9);
+        //doorServo.setPosition(0.5);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
@@ -50,7 +57,10 @@ public class Outtake implements Subsystem {
         else if (gamepad2.right_bumper) raiseSlides();
         else stopSlides();
 
-        if (gamepad2.x) emptyBox();
-        else returnBox();
+        if (gamepad2.right_trigger > 0.1) openDoor();
+        else closeDoor();
+
+        if (gamepad2.y) emptyBox();
+        else if(gamepad2.a) returnBox();
     }
 }
