@@ -24,9 +24,9 @@ public class OurRobot {
         imu = new IMU(opMode.hardwareMap);
         intake = new Intake(opMode.hardwareMap);
         outtake = new Outtake(opMode.hardwareMap);
-        vision = new Vision(opMode.hardwareMap, opMode);
+//        vision = new Vision(opMode.hardwareMap, opMode);
         subsystems = new Subsystem[] {
-                drivetrain, intake, outtake, imu, vision
+                drivetrain, intake, outtake, imu
         };
     }
 

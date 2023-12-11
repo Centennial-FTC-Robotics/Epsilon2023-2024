@@ -19,7 +19,7 @@ public class Outtake implements Subsystem {
     }
 
     public void raiseSlides() {
-        slideServo1.setPosition(0.);
+        slideServo1.setPosition(0.5);
         System.out.println("hereRaise");
     }
 
@@ -42,7 +42,7 @@ public class Outtake implements Subsystem {
     }
 
     public void emptyBox() {
-        dumperServo.setPosition(0);
+        dumperServo.setPosition(0.2);
         //doorServo.setPosition(1);
         System.out.println("hereEmpty");
     }
