@@ -4,16 +4,19 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import Epsilon.OurRobot;
-@Autonomous
 
-public class RedFarBasicParkAuto extends LinearOpMode{
+@Autonomous
+public class BackRedParkAuto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         OurRobot robot = new OurRobot(this);
 
         waitForStart();
 
-        robot.drivetrain.move(7, "strafe");
-        robot.drivetrain.move(-90, "drive");
+        robot.drivetrain.move(24, "drive");
+        robot.drivetrain.move(23,"rotate");
+        robot.drivetrain.move(24, "drive");
+        robot.drivetrain.move(24, "strafe");
+        robot.drivetrain.move(24, "drive");
     }
 }

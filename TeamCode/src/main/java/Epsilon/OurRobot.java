@@ -15,28 +15,18 @@ public class OurRobot {
     public Intake intake;
     public Outtake outtake;
     public Vision vision;
-    public Subsystem[] subsystems;
-
-
 
     public OurRobot(LinearOpMode opMode) {
         drivetrain = new Drivetrain(opMode.hardwareMap);
         imu = new IMU(opMode.hardwareMap);
         intake = new Intake(opMode.hardwareMap);
-        outtake = new Outtake(opMode.hardwareMap);
-//        vision = new Vision(opMode.hardwareMap, opMode);
-        subsystems = new Subsystem[] {
-                drivetrain, intake, outtake, imu
-        };
+        //outtake = new Outtake(opMode.hardwareMap);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) throws InterruptedException {
-        /*for(Subsystem subsystem : subsystems) {
-            subsystem.teleOpUpdate(gamepad1, gamepad2);
-        }*/
         drivetrain.teleOpUpdate(gamepad1, gamepad2);
         intake.teleOpUpdate(gamepad1, gamepad2);
-        outtake.teleOpUpdate(gamepad1, gamepad2);
+        //outtake.teleOpUpdate(gamepad1, gamepad2);
     }
 
 }

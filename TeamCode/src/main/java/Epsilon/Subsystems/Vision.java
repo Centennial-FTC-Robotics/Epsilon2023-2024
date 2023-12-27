@@ -35,7 +35,7 @@ public class Vision implements Subsystem {
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
     }
 
-    public Vision(final HardwareMap hMap, boolean weAreBlue, LinearOpMode opmode) {
+    public Vision(final HardwareMap hMap, boolean weAreBlue) {
         int cameraMonitorViewId = hMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
 

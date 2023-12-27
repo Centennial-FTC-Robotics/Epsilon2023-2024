@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import Epsilon.ElementProcessor;
 import Epsilon.OurRobot;
 
 @TeleOp
@@ -18,31 +19,19 @@ public class TestOpMode extends LinearOpMode {
 
         waitForStart();
 
-        //robot.drivetrain.move(21, "rotate");
-        if (robot.vision.detectCube() >= 120) {
-            robot.drivetrain.move(42,"rotate");
-            robot.drivetrain.move(24, "drive");
-            robot.drivetrain.move(21,"rotate");
-            robot.intake.spinWheel(0.5);
-        } else if (robot.vision.detectCube() <= 60) {
-            robot.drivetrain.move(42,"rotate");
-            robot.drivetrain.move(24, "drive");
-            robot.drivetrain.move(-21,"rotate");
-            robot.intake.spinWheel(0.5);
-            robot.drivetrain.move(42,"rotate");
+        if (robot.vision.detectElement() == ElementProcessor.PropPositions.LEFT) {
+            telemetry.addLine("left");
+        } else if (robot.vision.detectElement() == ElementProcessor.PropPositions.MIDDLE) {
+            telemetry.addLine("middle");
+        } else if (robot.vision.detectElement() == ElementProcessor.PropPositions.RIGHT) {
+            telemetry.addLine("right");
         } else {
-            robot.drivetrain.move(42,"rotate");
-            robot.drivetrain.move(24, "drive");
-            robot.intake.spinWheel(0.5);
-            robot.drivetrain.move(21,"rotate");
+            telemetry.addLine("not found");
         }
-        robot.drivetrain.move(76, "drive");
-        robot.drivetrain.move(26, "strafe");
-        robot.drivetrain.move(26, "drive");
+        telemetry.update();
 
         while (!isStopRequested()) {
             robot.teleOpUpdate(gamepad1, gamepad2);
-            //robot.vision.detectTag(this);
         }
     }
 }

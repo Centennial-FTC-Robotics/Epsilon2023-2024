@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import Epsilon.OurRobot;
 
 @Autonomous
-public class BlueFrontParkAuto extends LinearOpMode {
+public class BackBlueParkAuto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         OurRobot robot = new OurRobot(this);
