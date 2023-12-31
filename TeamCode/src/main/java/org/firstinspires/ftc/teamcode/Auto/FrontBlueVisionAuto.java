@@ -18,25 +18,32 @@ public class FrontBlueVisionAuto extends LinearOpMode {
 
         ElementProcessor.PropPositions cubeLocation = robot.vision.detectElement();
 
+        robot.drivetrain.move(28, "drive");
         if (cubeLocation == ElementProcessor.PropPositions.RIGHT) {
-            robot.drivetrain.move(24, "drive");
             robot.drivetrain.move(23, "rotate");
-            robot.intake.spinWheel(0.5);
-            robot.drivetrain.move(46, "rotate");
+            //robot.intake.spinWheel(0.5);
+            Thread.sleep(1000);
+            //robot.intake.spinWheel(0);
+            robot.drivetrain.move(-23, "rotate");
         } else if (cubeLocation == ElementProcessor.PropPositions.LEFT) {
-            robot.drivetrain.move(24, "drive");
             robot.drivetrain.move(-23, "rotate");
-            robot.intake.spinWheel(0.5);
+            //robot.intake.spinWheel(0.5);
+            Thread.sleep(1000);
+            //robot.intake.spinWheel(0);
+            robot.drivetrain.move(23, "rotate");
         } else if (cubeLocation == ElementProcessor.PropPositions.MIDDLE) {
-            robot.drivetrain.move(24, "drive");
-            robot.intake.spinWheel(0.5);
-            robot.drivetrain.move(-23, "rotate");
+            //robot.intake.spinWheel(0.5);
+            Thread.sleep(1000);
+            //robot.intake.spinWheel(0);
         } else {
             telemetry.addLine("cube not found");
             telemetry.update();
         }
-        robot.drivetrain.move(76, "drive");
-        robot.drivetrain.move(-24, "strafe");
         robot.drivetrain.move(24, "drive");
+        robot.drivetrain.move(-21, "rotate");
+        robot.drivetrain.move(72, "drive");
+        robot.drivetrain.move(-21, "rotate");
+        robot.drivetrain.move(48, "drive");
+        robot.drivetrain.move(24, "strafe");
     }
 }

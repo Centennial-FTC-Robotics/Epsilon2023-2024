@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import Epsilon.Subsystem;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 public class Drivetrain implements Subsystem {
@@ -15,6 +16,12 @@ public class Drivetrain implements Subsystem {
     public DcMotor frontRight;
     public DcMotor backLeft;
     public DcMotor backRight;
+    private double integralSum = 0;
+    private double Kp = 0;
+    private double Ki = 0;
+    private double Kd = 0;
+    private ElapsedTime timer = new ElapsedTime();
+    private double lastError = 0;
     public Drivetrain(final HardwareMap hMap) {
         frontLeft = hMap.get(DcMotor.class, "frontLeft");
         frontRight = hMap.get(DcMotor.class, "frontRight");
@@ -78,6 +85,18 @@ public class Drivetrain implements Subsystem {
 
         while (frontLeft.isBusy() || frontRight.isBusy() || backLeft.isBusy() || backRight.isBusy()) {}
 
+    }
+
+    public double PIDControl(double reference, double state) {
+        double error = reference - state;
+        integralSum += error * timer.seconds();
+        double derivative = (error - lastError) / timer.seconds();
+        lastError = error;
+
+        timer.reset();
+
+        double output = (error * Kp) + (derivative * Kd) + (integralSum * Ki);
+        return output;
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {

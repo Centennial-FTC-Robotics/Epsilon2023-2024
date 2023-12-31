@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import Epsilon.ElementProcessor;
 import Epsilon.OurRobot;
+import Epsilon.Subsystems.Vision;
 
 @TeleOp
 public class TestOpMode extends LinearOpMode {
@@ -16,6 +17,7 @@ public class TestOpMode extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         OurRobot robot = new OurRobot(this);
+        robot.vision = new Vision(hardwareMap, true);
 
         waitForStart();
 
