@@ -24,6 +24,8 @@ public class Vision implements Subsystem {
 
 
     Scalar redL = new Scalar(0, 155, 0);
+    Scalar redH = new Scalar(35, 255, 255);
+
     Scalar low;
     Scalar high;
 
@@ -55,7 +57,7 @@ public class Vision implements Subsystem {
         while(System.currentTimeMillis()-start < 5000 && pos == ElementProcessor.PropPositions.UNFOUND) {
             pos = processor.getRecordedPropPosition();
         }
+
         return processor.getRecordedPropPosition();
     }
-
 }
