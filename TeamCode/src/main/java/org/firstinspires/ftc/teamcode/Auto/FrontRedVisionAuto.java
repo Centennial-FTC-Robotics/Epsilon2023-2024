@@ -33,9 +33,10 @@ public class FrontRedVisionAuto extends LinearOpMode {
             telemetry.addLine("cube not found");
             telemetry.update();
         }
+        robot.drivetrain.move(26, "drive");
         robot.drivetrain.move(21, "rotate");
         robot.drivetrain.move(72, "drive");
-        robot.drivetrain.move(-21, "rotate");
+        robot.drivetrain.move(21, "rotate");
         robot.drivetrain.move(52, "drive");
         robot.drivetrain.move(26, "strafe");
     }
