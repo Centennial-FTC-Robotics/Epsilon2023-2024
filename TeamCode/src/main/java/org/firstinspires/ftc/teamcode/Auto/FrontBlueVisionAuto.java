@@ -21,20 +21,14 @@ public class FrontBlueVisionAuto extends LinearOpMode {
         robot.drivetrain.move(28, "drive");
         if (cubeLocation == ElementProcessor.PropPositions.RIGHT) {
             robot.drivetrain.move(23, "rotate");
-            //robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
-            //robot.intake.spinWheel(0);
             robot.drivetrain.move(-23, "rotate");
         } else if (cubeLocation == ElementProcessor.PropPositions.LEFT) {
             robot.drivetrain.move(-23, "rotate");
-            //robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
-            //robot.intake.spinWheel(0);
             robot.drivetrain.move(23, "rotate");
         } else if (cubeLocation == ElementProcessor.PropPositions.MIDDLE) {
-            //robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
-            //robot.intake.spinWheel(0);
         } else {
             telemetry.addLine("cube not found");
             telemetry.update();

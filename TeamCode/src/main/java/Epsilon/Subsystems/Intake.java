@@ -35,8 +35,8 @@ public class Intake implements Subsystem {
 
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
-        if (gamepad2.b) spinWheel(-0.8); //does this shit do anything
-        if (gamepad2.x) spinWheel( 0.5); //does this shit do anything
+        if (gamepad2.b) spinWheel(-1); //does this shit do anything
+        if (gamepad2.x) spinWheel( 1); //does this shit do anything
         else spinWheel(0);
 
         if (gamepad2.dpad_up) raiseIntake();
