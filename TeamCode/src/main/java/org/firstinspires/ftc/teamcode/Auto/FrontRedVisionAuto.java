@@ -37,7 +37,10 @@ public class FrontRedVisionAuto extends LinearOpMode {
         robot.drivetrain.move(20.5, "rotate");
         robot.drivetrain.move(72, "drive");
         robot.drivetrain.move(20.5, "rotate");
-        robot.drivetrain.move(52, "drive");
-        robot.drivetrain.move(-26, "strafe");
+        robot.drivetrain.move(26, "drive");
+        robot.drivetrain.move(-20.5, "rotate");
+        robot.drivetrain.move(10, "drive");
+        robot.drivetrain.move(26, "strafe");
+        robot.drivetrain.move(14, "drive");
     }
 }

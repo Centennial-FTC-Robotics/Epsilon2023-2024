@@ -34,7 +34,7 @@ public class BackBlueVisionAuto extends LinearOpMode {
             telemetry.update();
         }
         robot.drivetrain.move(34, "drive");
-        robot.drivetrain.move(-28, "strafe");
+        robot.drivetrain.move(-30, "strafe");
         robot.drivetrain.move(14, "drive");
     }
 }
