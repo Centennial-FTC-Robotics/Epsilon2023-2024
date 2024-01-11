@@ -12,10 +12,12 @@ public class Launcher implements Subsystem {
     }
 
     public void launch() {
-        launcher.setPosition(0.5); //?@??@?@?@?@????@?@
+        launcher.setPosition(0.5);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
-        if (gamepad2.y) launch();
+        if (gamepad2.dpad_left) {
+            launch();
+        }
     }
 }

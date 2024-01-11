@@ -21,16 +21,10 @@ public class TestOpMode extends LinearOpMode {
 
         waitForStart();
 
-        if (robot.vision.detectElement() == ElementProcessor.PropPositions.LEFT) {
-            telemetry.addLine("left");
-        } else if (robot.vision.detectElement() == ElementProcessor.PropPositions.MIDDLE) {
-            telemetry.addLine("middle");
-        } else if (robot.vision.detectElement() == ElementProcessor.PropPositions.RIGHT) {
-            telemetry.addLine("right");
-        } else {
-            telemetry.addLine("not found");
-        }
-        telemetry.update();
+        robot.intake.lowerIntake();
+        robot.intake.spinWheel(0.5);
+        Thread.sleep(1000);
+        robot.intake.spinWheel(0);
 
         while (!isStopRequested()) {
             robot.teleOpUpdate(gamepad1, gamepad2);

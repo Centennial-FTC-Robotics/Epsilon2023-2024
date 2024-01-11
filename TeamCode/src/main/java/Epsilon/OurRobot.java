@@ -23,14 +23,14 @@ public class OurRobot {
         imu = new IMU(opMode.hardwareMap);
         intake = new Intake(opMode.hardwareMap);
         launcher = new Launcher(opMode.hardwareMap);
-        //outtake = new Outtake(opMode.hardwareMap);
+        outtake = new Outtake(opMode.hardwareMap);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) throws InterruptedException {
         drivetrain.teleOpUpdate(gamepad1, gamepad2);
         intake.teleOpUpdate(gamepad1, gamepad2);
         launcher.teleOpUpdate(gamepad1, gamepad2);
-        //outtake.teleOpUpdate(gamepad1, gamepad2);
+        outtake.teleOpUpdate(gamepad1, gamepad2);
     }
 
 }

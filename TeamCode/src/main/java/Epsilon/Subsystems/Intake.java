@@ -23,23 +23,28 @@ public class Intake implements Subsystem {
     }
 
     public void lowerIntake() {
+        leftServo.setPosition(0.47);
+        rightServo.setPosition(0.03);
+    }
+
+    public void fullLowerIntake() {
         leftServo.setPosition(0.5);
-        rightServo.setPosition(0);
+        rightServo.setPosition(0.0);
     }
 
     public void raiseIntake() {
-        leftServo.setPosition(0);
+        leftServo.setPosition(0.0);
         rightServo.setPosition(0.5);
     }
 
 
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
-        if (gamepad2.b) spinWheel(-0.8); //does this shit do anything
+        if (gamepad2.b) spinWheel(-1); //does this shit do anything
         if (gamepad2.x) spinWheel( 0.5); //does this shit do anything
         else spinWheel(0);
 
         if (gamepad2.dpad_up) raiseIntake();
-        if (gamepad2.dpad_down) lowerIntake();
+        if (gamepad2.dpad_down) fullLowerIntake();
     }
 }

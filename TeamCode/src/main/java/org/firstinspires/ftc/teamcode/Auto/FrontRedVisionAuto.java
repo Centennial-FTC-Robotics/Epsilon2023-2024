@@ -21,14 +21,23 @@ public class FrontRedVisionAuto extends LinearOpMode {
         robot.drivetrain.move(28, "drive");
         if (cubeLocation == ElementProcessor.PropPositions.RIGHT) {
             robot.drivetrain.move(20.5, "rotate");
+            robot.intake.lowerIntake();
+            robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
+            robot.intake.spinWheel(0);
             robot.drivetrain.move(-20.5, "rotate");
         } else if (cubeLocation == ElementProcessor.PropPositions.LEFT) {
             robot.drivetrain.move(-20.5, "rotate");
+            robot.intake.lowerIntake();
+            robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
+            robot.intake.spinWheel(0);
             robot.drivetrain.move(20.5, "rotate");
         } else if (cubeLocation == ElementProcessor.PropPositions.MIDDLE) {
+            robot.intake.lowerIntake();
+            robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
+            robot.intake.spinWheel(0);
         } else {
             telemetry.addLine("cube not found");
             telemetry.update();
@@ -37,10 +46,7 @@ public class FrontRedVisionAuto extends LinearOpMode {
         robot.drivetrain.move(20.5, "rotate");
         robot.drivetrain.move(72, "drive");
         robot.drivetrain.move(20.5, "rotate");
-        robot.drivetrain.move(26, "drive");
-        robot.drivetrain.move(-20.5, "rotate");
-        robot.drivetrain.move(10, "drive");
-        robot.drivetrain.move(26, "strafe");
-        robot.drivetrain.move(14, "drive");
+        robot.drivetrain.move(50, "drive");
+        robot.drivetrain.move(-26, "strafe");
     }
 }

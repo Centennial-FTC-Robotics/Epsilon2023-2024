@@ -29,11 +29,11 @@ public class Outtake implements Subsystem {
     }
 
     public void openDoor() {
-        doorServo.setPosition(0);
+        doorServo.setPosition(1);
     }
 
     public void closeDoor() {
-        doorServo.setPosition(0.5);
+        doorServo.setPosition(0.25);
     }
 
     public void stopSlides() {

@@ -13,10 +13,10 @@ public class BackRedParkAuto extends LinearOpMode {
 
         waitForStart();
 
-        robot.drivetrain.move(24, "drive");
-        robot.drivetrain.move(23,"rotate");
-        robot.drivetrain.move(24, "drive");
-        robot.drivetrain.move(24, "strafe");
-        robot.drivetrain.move(24, "drive");
+        robot.drivetrain.move(28, "drive");
+        robot.drivetrain.move(20.5,"rotate");
+        robot.drivetrain.move(34, "drive");
+        robot.drivetrain.move(30, "strafe");
+        robot.drivetrain.move(14, "drive");
     }
 }

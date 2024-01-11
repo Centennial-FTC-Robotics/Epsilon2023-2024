@@ -13,10 +13,15 @@ public class FrontRedParkAuto extends LinearOpMode {
 
         waitForStart();
 
-        robot.drivetrain.move(24, "drive");
-        robot.drivetrain.move(23,"rotate");
-        robot.drivetrain.move(76, "drive");
-        robot.drivetrain.move(24, "strafe");
-        robot.drivetrain.move(24, "drive");
+        Thread.sleep(10000);
+        robot.drivetrain.move(54, "drive");
+        robot.drivetrain.move(20.5, "rotate");
+        robot.drivetrain.move(72, "drive");
+        robot.drivetrain.move(20.5, "rotate");
+        robot.drivetrain.move(26, "drive");
+        robot.drivetrain.move(-20.5, "rotate");
+        robot.drivetrain.move(10, "drive");
+        robot.drivetrain.move(26, "strafe");
+        robot.drivetrain.move(14, "drive");
     }
 }
