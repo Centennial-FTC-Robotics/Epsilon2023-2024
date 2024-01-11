@@ -12,7 +12,7 @@ public class FrontRedVisionAuto extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         OurRobot robot = new OurRobot(this);
-        robot.vision = new Vision(hardwareMap, true); //make false when find red cube
+        robot.vision = new Vision(hardwareMap, false);
 
         waitForStart();
 
