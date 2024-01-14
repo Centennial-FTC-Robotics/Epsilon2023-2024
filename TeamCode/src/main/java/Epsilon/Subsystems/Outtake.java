@@ -20,12 +20,10 @@ public class Outtake implements Subsystem {
 
     public void raiseSlides() {
         slideServo1.setPosition(0.5);
-        System.out.println("hereRaise");
     }
 
     public void lowerSlides() {
         slideServo1.setPosition(0);
-        System.out.println("hereLower");
     }
 
     public void openDoor() {
@@ -36,31 +34,36 @@ public class Outtake implements Subsystem {
         doorServo.setPosition(0.25);
     }
 
-    public void stopSlides() {
-        //leftSlide.setPower(0);
-        //rightSlide.setPower(0);
-    }
-
     public void emptyBox() {
         dumperServo.setPosition(0.2);
-        //doorServo.setPosition(1);
-        System.out.println("hereEmpty");
     }
 
     public void returnBox() {
         dumperServo.setPosition(0.9);
-        //doorServo.setPosition(0.5);
+    }
+
+    public void extendOuttake() throws InterruptedException {
+        raiseSlides();
+        Thread.sleep(1000);
+        openDoor();
+        emptyBox();
+    }
+
+    public void retractOuttake() throws InterruptedException {
+        closeDoor();
+        returnBox();
+        lowerSlides();
+        Thread.sleep(1000);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
         if (gamepad2.left_bumper) lowerSlides();
         else if (gamepad2.right_bumper) raiseSlides();
-        else stopSlides();
 
         if (gamepad2.right_trigger > 0.1) openDoor();
-        else closeDoor();
+        else if (gamepad2.left_trigger > 0.1) closeDoor();
 
         if (gamepad2.y) emptyBox();
-        else if(gamepad2.a) returnBox();
+        else if (gamepad2.a) returnBox();
     }
 }
