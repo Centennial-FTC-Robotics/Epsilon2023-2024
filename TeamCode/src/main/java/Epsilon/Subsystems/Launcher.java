@@ -8,7 +8,9 @@ import Epsilon.Subsystem;
 public class Launcher implements Subsystem {
     public Servo launcher;
     public Launcher(final HardwareMap hMap) {
+
         launcher = hMap.get(Servo.class, "launcherServo");
+        launcher.setPosition(0.8);
     }
 
     public void launch() {
