@@ -16,12 +16,8 @@ public class Drivetrain implements Subsystem {
     public DcMotor frontRight;
     public DcMotor backLeft;
     public DcMotor backRight;
-    private double integralSum = 0;
-    private double Kp = 0;
-    private double Ki = 0;
-    private double Kd = 0;
-    private ElapsedTime timer = new ElapsedTime();
-    private double lastError = 0;
+    private boolean slowMode = false;
+
     public Drivetrain(final HardwareMap hMap) {
         frontLeft = hMap.get(DcMotor.class, "frontLeft");
         frontRight = hMap.get(DcMotor.class, "frontRight");
@@ -87,32 +83,29 @@ public class Drivetrain implements Subsystem {
 
     }
 
-    public double PIDControl(double reference, double state) {
-        double error = reference - state;
-        integralSum += error * timer.seconds();
-        double derivative = (error - lastError) / timer.seconds();
-        lastError = error;
-
-        timer.reset();
-
-        double output = (error * Kp) + (derivative * Kd) + (integralSum * Ki);
-        return output;
-    }
-
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
+        if (gamepad1.right_bumper) slowMode = !slowMode;
+
         frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         double drive = gamepad1.left_stick_y;
-        double strafe = -gamepad1.left_stick_x;
+        double strafe = -1.65*gamepad1.left_stick_x;
         double turn = -gamepad1.right_stick_x;
-        double frontLeftPower = Range.clip(drive + strafe + turn, -1, 1);
-        double frontRightPower = Range.clip(drive - strafe - turn, -1, 1);
-        double backLeftPower = Range.clip(drive - strafe + turn, -1, 1);
-        double backRightPower = Range.clip(drive + strafe - turn, -1, 1);
-
+        double frontLeftPower, frontRightPower, backLeftPower, backRightPower;
+        if (slowMode) {
+            frontLeftPower = Range.clip(drive + strafe + turn, -0.3, 0.3);
+            frontRightPower = Range.clip(drive - strafe - turn, -0.3, 0.3);
+            backLeftPower = Range.clip(drive - strafe + turn, -0.3, 0.3);
+            backRightPower = Range.clip(drive + strafe - turn, -0.3, 0.3);
+        } else {
+            frontLeftPower = Range.clip(drive + strafe + turn, -0.8, 0.8);
+            frontRightPower = Range.clip(drive - strafe - turn, -0.8, 0.8);
+            backLeftPower = Range.clip(drive - strafe + turn, -0.8, 0.8);
+            backRightPower = Range.clip(drive + strafe - turn, -0.8, 0.8);
+        }
         frontLeft.setPower(frontLeftPower);
         frontRight.setPower(frontRightPower);
         backLeft.setPower(backLeftPower);
