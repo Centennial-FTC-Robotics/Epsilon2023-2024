@@ -44,10 +44,10 @@ public class BackRedAuto extends LinearOpMode {
             telemetry.addLine("cube not found");
             telemetry.update();
         }
-        robot.drivetrain.move(-10, "drive");
-        robot.outtake.extendOuttake();
-        robot.outtake.retractOuttake();
-        robot.drivetrain.move(-30, "strafe");
-        robot.drivetrain.move(-14, "drive");
+//        robot.drivetrain.move(-10, "drive");
+//        robot.outtake.extendOuttake();
+//        robot.outtake.retractOuttake();
+//        robot.drivetrain.move(-30, "strafe");
+//        robot.drivetrain.move(-14, "drive");
     }
 }

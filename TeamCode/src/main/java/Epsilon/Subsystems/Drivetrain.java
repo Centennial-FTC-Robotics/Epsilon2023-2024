@@ -98,14 +98,13 @@ public class Drivetrain implements Subsystem {
         double turn = -gamepad1.right_stick_x;
         double frontLeftPower, frontRightPower, backLeftPower, backRightPower;
 
-        double mult = (slowMode) ? 0.3 : 0.8;
+        double mult = (slowMode) ? 0.3 : 0.6;
 
-        double denom = Math.abs(drive) + Math.abs(strafe) + Math.abs(turn);
 
-        frontLeftPower = (drive + strafe + turn)/denom;
-        frontRightPower = (drive - strafe - turn)/denom;
-        backLeftPower = (drive - strafe + turn)/denom;
-        backRightPower = (drive + strafe - turn)/denom;
+        frontLeftPower = Range.clip(drive + strafe + turn, -1, 1);
+        frontRightPower = Range.clip(drive - strafe - turn, -1, 1);
+        backLeftPower = Range.clip(drive - strafe + turn, -1, 1);
+        backRightPower = Range.clip(drive + strafe - turn, -1, 1);
 
         frontLeft.setPower(frontLeftPower*mult);
         frontRight.setPower(frontRightPower*mult);
