@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.hardware.RevIMU;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import Epsilon.ElementProcessor;
 import Epsilon.OurRobot;
@@ -16,18 +17,14 @@ public class TestOpMode extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        OurRobot robot = new OurRobot(this);
-        robot.vision = new Vision(hardwareMap, true);
+        DcMotor slides = hardwareMap.get(DcMotor.class, "slideMotor");
+
+        slides.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        slides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         waitForStart();
-
-        robot.intake.lowerIntake();
-        robot.intake.spinWheel(0.5);
-        Thread.sleep(1000);
-        robot.intake.spinWheel(0);
-
-        while (!isStopRequested()) {
-            robot.teleOpUpdate(gamepad1, gamepad2);
+        while(opModeIsActive()) {
+            slides.setPower(gamepad1.left_stick_y);
         }
     }
 }

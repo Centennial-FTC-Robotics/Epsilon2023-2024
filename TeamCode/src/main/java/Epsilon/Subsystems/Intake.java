@@ -11,12 +11,10 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class Intake implements Subsystem {
     public Servo leftServo;
-    public Servo rightServo;
     public DcMotor wheelMotor;
     public CRServo boxWheelServo;
     public Intake(final HardwareMap hMap) {
         leftServo = hMap.get(Servo.class, "left");
-        rightServo = hMap.get(Servo.class, "right");
         wheelMotor = hMap.get(DcMotor.class, "wheel");
         boxWheelServo = hMap.get(CRServo.class, "boxWheel");
     }
@@ -28,17 +26,14 @@ public class Intake implements Subsystem {
 
     public void lowerIntake() {
         leftServo.setPosition(0.47);
-        rightServo.setPosition(0.03);
     }
 
     public void fullLowerIntake() {
         leftServo.setPosition(0.5);
-        rightServo.setPosition(0.0);
     }
 
     public void raiseIntake() {
         leftServo.setPosition(0.0);
-        rightServo.setPosition(0.5);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {

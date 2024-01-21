@@ -11,6 +11,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import org.opencv.core.Mat;
+
 public class Drivetrain implements Subsystem {
     public DcMotor frontLeft;
     public DcMotor frontRight;
@@ -95,20 +97,19 @@ public class Drivetrain implements Subsystem {
         double strafe = -1.65*gamepad1.left_stick_x;
         double turn = -gamepad1.right_stick_x;
         double frontLeftPower, frontRightPower, backLeftPower, backRightPower;
-        if (slowMode) {
-            frontLeftPower = Range.clip(drive + strafe + turn, -0.3, 0.3);
-            frontRightPower = Range.clip(drive - strafe - turn, -0.3, 0.3);
-            backLeftPower = Range.clip(drive - strafe + turn, -0.3, 0.3);
-            backRightPower = Range.clip(drive + strafe - turn, -0.3, 0.3);
-        } else {
-            frontLeftPower = Range.clip(drive + strafe + turn, -0.8, 0.8);
-            frontRightPower = Range.clip(drive - strafe - turn, -0.8, 0.8);
-            backLeftPower = Range.clip(drive - strafe + turn, -0.8, 0.8);
-            backRightPower = Range.clip(drive + strafe - turn, -0.8, 0.8);
-        }
-        frontLeft.setPower(frontLeftPower);
-        frontRight.setPower(frontRightPower);
-        backLeft.setPower(backLeftPower);
-        backRight.setPower(backRightPower);
+
+        double mult = (slowMode) ? 0.3 : 0.8;
+
+        double denom = Math.abs(drive) + Math.abs(strafe) + Math.abs(turn);
+
+        frontLeftPower = (drive + strafe + turn)/denom;
+        frontRightPower = (drive - strafe - turn)/denom;
+        backLeftPower = (drive - strafe + turn)/denom;
+        backRightPower = (drive + strafe - turn)/denom;
+
+        frontLeft.setPower(frontLeftPower*mult);
+        frontRight.setPower(frontRightPower*mult);
+        backLeft.setPower(backLeftPower*mult);
+        backRight.setPower(backRightPower*mult);
     }
 }

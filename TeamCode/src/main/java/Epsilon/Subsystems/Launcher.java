@@ -18,7 +18,7 @@ public class Launcher implements Subsystem {
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
-        if (gamepad2.right_bumper) {
+        if (gamepad2.dpad_left) {
             launch();
         }
     }
