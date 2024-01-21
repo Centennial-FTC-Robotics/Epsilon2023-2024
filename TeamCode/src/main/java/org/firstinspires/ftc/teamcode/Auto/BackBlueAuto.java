@@ -25,11 +25,7 @@ public class BackBlueAuto extends LinearOpMode {
             robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
             robot.intake.spinWheel(0);
-            robot.drivetrain.move(-6, "strafe");
-            robot.drivetrain.move(-34, "drive");
-            robot.outtake.extendOuttake();
-            robot.outtake.retractOuttake();
-            robot.drivetrain.move(36, "strafe");
+            robot.drivetrain.move(-24, "drive");
         } else if (cubeLocation == ElementProcessor.PropPositions.LEFT) {
             robot.drivetrain.move(20.5, "rotate");
             robot.drivetrain.move(-24, "drive");
@@ -38,22 +34,18 @@ public class BackBlueAuto extends LinearOpMode {
             Thread.sleep(1000);
             robot.intake.spinWheel(0);
             robot.drivetrain.move(41, "rotate");
-            robot.drivetrain.move(6, "strafe");
-            robot.drivetrain.move(-10, "drive");
-            robot.outtake.extendOuttake();
-            robot.outtake.retractOuttake();
-            robot.drivetrain.move(24, "strafe");
         } else {
             robot.intake.lowerIntake();
             robot.intake.spinWheel(0.5);
             Thread.sleep(1000);
             robot.intake.spinWheel(0);
             robot.drivetrain.move(20.5, "rotate");
-            robot.drivetrain.move(-34, "drive");
-            robot.outtake.extendOuttake();
-            robot.outtake.retractOuttake();
-            robot.drivetrain.move(30, "strafe");
+            robot.drivetrain.move(-24, "drive");
         }
-        robot.drivetrain.move(-14, "drive");
+//        robot.drivetrain.move(-10, "drive");
+//        robot.outtake.extendOuttake();
+//        robot.outtake.retractOuttake();
+//        robot.drivetrain.move(30, "strafe");
+//        robot.drivetrain.move(-14, "drive");
     }
 }
