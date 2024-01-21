@@ -24,8 +24,8 @@ public class FrontBlueAuto extends LinearOpMode {
         } else if (cubeLocation == ElementProcessor.PropPositions.LEFT) {
             robot.drivetrain.move(-20.5, "rotate");
         }
-        robot.intake.lowerIntake();
-        robot.intake.spinWheel(0.5);
+        //robot.intake.lowerIntake();
+        robot.intake.spinWheel(-0.5);
         Thread.sleep(1000);
         robot.intake.spinWheel(0);
     }
