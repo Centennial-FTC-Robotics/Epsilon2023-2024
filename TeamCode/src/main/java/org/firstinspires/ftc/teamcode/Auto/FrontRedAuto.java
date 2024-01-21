@@ -42,14 +42,14 @@ public class FrontRedAuto extends LinearOpMode {
             telemetry.addLine("cube not found");
             telemetry.update();
         }
-        robot.drivetrain.move(26, "drive");
-        robot.drivetrain.move(20.5, "rotate");
-        robot.drivetrain.move(72, "drive");
-        robot.drivetrain.move(24, "strafe");
-        robot.drivetrain.move(10, "drive");
-        robot.outtake.extendOuttake();
-        robot.outtake.retractOuttake();
-        robot.drivetrain.move(24, "strafe");
-        robot.drivetrain.move(24, "drive");
+//        robot.drivetrain.move(26, "drive");
+//        robot.drivetrain.move(20.5, "rotate");
+//        robot.drivetrain.move(72, "drive");
+//        robot.drivetrain.move(24, "strafe");
+//        robot.drivetrain.move(10, "drive");
+//        robot.outtake.extendOuttake();
+//        robot.outtake.retractOuttake();
+//        robot.drivetrain.move(24, "strafe");
+//        robot.drivetrain.move(24, "drive");
     }
 }
