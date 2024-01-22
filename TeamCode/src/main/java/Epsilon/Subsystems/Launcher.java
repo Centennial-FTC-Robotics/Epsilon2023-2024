@@ -23,11 +23,11 @@ public class Launcher implements Subsystem {
 
 
         launcher = hMap.get(Servo.class, "launcherServo");
-        launcher.setPosition(0.8);
+        launcher.setPosition(0.6);
     }
 
     public void launch() {
-        launcher.setPosition(0.5);
+        launcher.setPosition(0.0);
     }
 
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {

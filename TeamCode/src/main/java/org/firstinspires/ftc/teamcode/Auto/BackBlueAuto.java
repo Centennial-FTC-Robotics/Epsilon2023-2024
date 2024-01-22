@@ -23,7 +23,7 @@ public class BackBlueAuto extends LinearOpMode {
             robot.drivetrain.move(20.5, "rotate");
             //robot.intake.lowerIntake();
             robot.intake.spinWheel(-0.5);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             robot.intake.spinWheel(0);
             robot.drivetrain.move(-24, "drive");
         } else if (cubeLocation == ElementProcessor.PropPositions.LEFT) {
@@ -31,13 +31,13 @@ public class BackBlueAuto extends LinearOpMode {
             robot.drivetrain.move(-24, "drive");
             //robot.intake.lowerIntake();
             robot.intake.spinWheel(-0.5);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             robot.intake.spinWheel(0);
             robot.drivetrain.move(41, "rotate");
         } else {
             //robot.intake.lowerIntake();
             robot.intake.spinWheel(-0.5);
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             robot.intake.spinWheel(0);
             robot.drivetrain.move(20.5, "rotate");
             robot.drivetrain.move(-24, "drive");

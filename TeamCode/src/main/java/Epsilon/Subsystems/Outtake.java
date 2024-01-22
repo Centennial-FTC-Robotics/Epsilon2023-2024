@@ -22,14 +22,14 @@ public class Outtake implements Subsystem {
     public static double wheelOutMult = 1;
 
     public DcMotor slideMotor;
-    public DcMotor slideMotor2;
+    //public DcMotor slideMotor2;
     public Servo dumperServo;
     public CRServo wheel;
 
     public Outtake(final HardwareMap hMap) {
 
         slideMotor = hMap.get(DcMotor.class, "slideMotor");
-        slideMotor2 = hMap.get(DcMotor.class, "slideMotor2");
+        //slideMotor2 = hMap.get(DcMotor.class, "slideMotor2");
 
         dumperServo = hMap.get(Servo.class, "dumperServo");
         wheel = hMap.get(CRServo.class, "boxWheel");
@@ -41,7 +41,7 @@ public class Outtake implements Subsystem {
     public void teleOpUpdate(Gamepad gamepad1, Gamepad gamepad2) {
 
         slideMotor.setPower(Range.clip(-gamepad2.left_stick_y+feedforward, -1, 1));
-        slideMotor2.setPower(Range.clip(gamepad2.left_stick_y+feedforward, -1, 1));
+        //slideMotor2.setPower(Range.clip(gamepad2.left_stick_y+feedforward, -1, 1));
 
         if(gamepad2.right_bumper)
             dumperServo.setPosition(dumperOut);

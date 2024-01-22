@@ -17,14 +17,10 @@ public class TestOpMode extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        DcMotor slides = hardwareMap.get(DcMotor.class, "slideMotor");
-
-        slides.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        slides.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-
+        OurRobot robot = new OurRobot(this);
         waitForStart();
-        while(opModeIsActive()) {
-            slides.setPower(gamepad1.left_stick_y);
-        }
+        robot.intake.spinWheel(-0.5);
+        Thread.sleep(2000);
+        robot.intake.spinWheel(0);
     }
 }
